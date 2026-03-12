@@ -107,24 +107,24 @@ function initTooltips(container) {
   container.querySelectorAll('[data-tooltip]').forEach(el => {
     el.addEventListener('mouseenter', () => {
       tooltipEl.textContent = el.dataset.tooltip
-      tooltipEl.classList.add('is-visible')
       positionTooltip(el)
+      tooltipEl.classList.add('is-visible')
+      // Re-position after layout pass (fixes first-time width = 0)
+      requestAnimationFrame(() => positionTooltip(el))
     })
     el.addEventListener('mouseleave', () => {
       tooltipEl.classList.remove('is-visible')
-    })
-    el.addEventListener('mousemove', () => {
-      positionTooltip(el)
     })
   })
 }
 
 function positionTooltip(el) {
   const rect = el.getBoundingClientRect()
-  const tipW = tooltipEl.offsetWidth
+  const tipW = tooltipEl.offsetWidth || 260
+  const tipH = tooltipEl.offsetHeight || 48
   const gap = 10
   let left = rect.left + rect.width / 2 - tipW / 2
-  let top = rect.top - tooltipEl.offsetHeight - gap
+  let top = rect.top - tipH - gap
 
   // Keep within viewport horizontally
   left = Math.max(8, Math.min(left, window.innerWidth - tipW - 8))

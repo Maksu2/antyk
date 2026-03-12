@@ -602,7 +602,6 @@ h1, h2, h3 {
   border: 1px solid var(--gold-dim);
   border-radius: 999px;
   padding: 4px 14px;
-  text-transform: uppercase;
 }
 
 /* ─── Term tooltips ─── */
