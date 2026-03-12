@@ -1,3 +1,5 @@
+import { GLOSSARY } from '../data/glossary.js'
+
 let backdrop = null
 let modal = null
 let modalInner = null
@@ -81,10 +83,20 @@ function buildModalHTML(sub, categoryLabel) {
     <p class="drawer__category">${escHtml(categoryLabel)}</p>
     <h2 class="drawer__title">${escHtml(sub.title)}</h2>
     <hr class="drawer__divider" />
-    <p class="drawer__body">${escHtml(sub.body)}</p>
+    <p class="drawer__body">${annotateBody(escHtml(sub.body))}</p>
     ${quoteHTML}
     <div class="drawer__tags" aria-label="Tagi">${tagsHTML}</div>
   `
+}
+
+function annotateBody(escapedText) {
+  let result = escapedText
+  for (const { pattern, def } of GLOSSARY) {
+    result = result.replace(pattern, match =>
+      `<span class="term" data-tooltip="${def.replace(/"/g, '&quot;')}">${match}</span>`
+    )
+  }
+  return result
 }
 
 function escHtml(str) {

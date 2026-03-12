@@ -261,7 +261,7 @@ h1, h2, h3 {
   background: var(--bg-card);
   border: 1px solid rgba(201, 168, 76, 0.08);
   border-radius: 4px;
-  cursor: crosshair;
+  cursor: pointer;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -384,7 +384,7 @@ h1, h2, h3 {
 .subtopic-tile {
   background: var(--bg-card);
   padding: 28px 28px 24px;
-  cursor: crosshair;
+  cursor: pointer;
   position: relative;
   border-radius: 6px;
   transition: background 300ms ease, transform 300ms ease, box-shadow 300ms ease;
@@ -603,6 +603,58 @@ h1, h2, h3 {
   border-radius: 999px;
   padding: 4px 14px;
   text-transform: uppercase;
+}
+
+/* ─── Term tooltips ─── */
+.term {
+  border-bottom: 1px dotted rgba(201, 168, 76, 0.5);
+  cursor: help;
+  position: relative;
+  display: inline;
+}
+
+.term::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  bottom: calc(100% + 10px);
+  left: 50%;
+  transform: translateX(-50%);
+  background: #201d18;
+  border: 1px solid rgba(201, 168, 76, 0.25);
+  border-radius: 6px;
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 300;
+  line-height: 1.5;
+  padding: 10px 14px;
+  width: 240px;
+  white-space: normal;
+  text-align: left;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 200ms ease;
+  z-index: 200;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6);
+}
+
+.term::before {
+  content: '';
+  position: absolute;
+  bottom: calc(100% + 4px);
+  left: 50%;
+  transform: translateX(-50%);
+  border: 5px solid transparent;
+  border-top-color: rgba(201, 168, 76, 0.25);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 200ms ease;
+  z-index: 200;
+}
+
+.term:hover::after,
+.term:hover::before {
+  opacity: 1;
 }
 
 /* ─── Footer ─── */

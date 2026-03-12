@@ -1,4 +1,10 @@
 import { categories } from '../data/content.js'
+
+function pluralPL(n) {
+  if (n === 1) return 'temat'
+  if (n >= 2 && n <= 4) return 'tematy'
+  return 'tematów'
+}
 import { openDrawer } from './drawer.js'
 
 export function renderCategories(container) {
@@ -29,7 +35,7 @@ export function renderCategories(container) {
     btn.innerHTML = `
       <i data-lucide="${cat.icon}" class="category-icon" aria-hidden="true"></i>
       <span class="category-btn__name">${cat.label}</span>
-      <span class="category-btn__count">${cat.subtopics.length} ${cat.subtopics.length === 1 ? 'temat' : 'tematy/ów'}</span>
+      <span class="category-btn__count">${cat.subtopics.length} ${pluralPL(cat.subtopics.length)}</span>
       <span class="category-btn__indicator" aria-hidden="true"></span>
     `
 
