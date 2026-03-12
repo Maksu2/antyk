@@ -1,9 +1,9 @@
 const ICONS = {
-  filozofia: `<svg width="32" height="32" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="16" y1="6" x2="16" y2="27"/><line x1="7" y1="11" x2="25" y2="11"/><path d="M5 19 Q8 23 11 19 L8 11"/><path d="M27 19 Q24 23 21 19 L24 11"/><line x1="12" y1="27" x2="20" y2="27"/></svg>`,
-  mitologia: `<svg width="32" height="32" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20,4 12,17 18,17 12,28"/></svg>`,
-  tragedia: `<svg width="32" height="32" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="16" cy="15" r="11"/><line x1="12" y1="12" x2="12" y2="14"/><line x1="20" y1="12" x2="20" y2="14"/><path d="M11 20 Q16 17 21 20"/></svg>`,
-  teatr: `<svg width="32" height="32" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="28" x2="5" y2="13"/><line x1="27" y1="28" x2="27" y2="13"/><path d="M5 13 Q16 3 27 13"/><line x1="3" y1="28" x2="29" y2="28"/></svg>`,
-  poezja: `<svg width="32" height="32" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 24 C6 24 5 18 5 15 C5 9 10 5 16 5 C22 5 27 9 27 15 C27 18 26 24 21 24 Z"/><line x1="11" y1="24" x2="11" y2="28"/><line x1="21" y1="24" x2="21" y2="28"/><line x1="9" y1="28" x2="23" y2="28"/><line x1="13" y1="9" x2="13" y2="24"/><line x1="16" y1="7" x2="16" y2="24"/><line x1="19" y1="9" x2="19" y2="24"/></svg>`,
+  filozofia: 'ph-thin ph-scales',
+  mitologia: 'ph-thin ph-lightning',
+  tragedia: 'ph-thin ph-mask-sad',
+  teatr: 'ph-thin ph-columns',
+  poezja: 'ph-thin ph-music-notes',
 }
 
 export const categories = [

@@ -27,7 +27,7 @@ export function renderCategories(container) {
     btn.dataset.catId = cat.id
 
     btn.innerHTML = `
-      <span class="category-btn__icon" aria-hidden="true">${cat.icon}</span>
+      <i class="category-btn__icon ${cat.icon}" aria-hidden="true" style="font-size:32px"></i>
       <span class="category-btn__name">${cat.label}</span>
       <span class="category-btn__count">${cat.subtopics.length} ${cat.subtopics.length === 1 ? 'temat' : 'tematy/ów'}</span>
       <span class="category-btn__indicator" aria-hidden="true"></span>
