@@ -1,4 +1,4 @@
-import { GLOSSARY } from '../data/glossary.js'
+import { GLOSSARY, TAG_GLOSSARY } from '../data/glossary.js'
 
 let backdrop = null
 let modal = null
@@ -76,7 +76,12 @@ function buildModalHTML(sub, categoryLabel) {
     : ''
 
   const tagsHTML = sub.tags
-    .map(tag => `<span class="drawer__tag">${escHtml(tag)}</span>`)
+    .map(tag => {
+      const def = TAG_GLOSSARY[tag.toLowerCase()]
+      return def
+        ? `<span class="drawer__tag term" data-tooltip="${def.replace(/"/g, '&quot;')}">${escHtml(tag)}</span>`
+        : `<span class="drawer__tag">${escHtml(tag)}</span>`
+    })
     .join('')
 
   return `
