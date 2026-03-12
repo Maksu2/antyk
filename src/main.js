@@ -16,7 +16,11 @@ app.innerHTML = `
     <section class="hero" id="hero" aria-label="Wprowadzenie"></section>
 
     <section class="map-section" id="map" aria-label="Mapa tematyczna">
-      <div class="map-ornament" aria-hidden="true"><span class="map-ornament__symbol">✦</span></div>
+      <div class="section-divider" aria-hidden="true">
+        <div class="section-divider__line"></div>
+        <span class="section-divider__ornament">✦</span>
+        <div class="section-divider__line"></div>
+      </div>
       <div id="categories"></div>
     </section>
   </main>

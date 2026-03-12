@@ -1,9 +1,9 @@
 const ICONS = {
-  filozofia: 'ph-thin ph-scales',
-  mitologia: 'ph-thin ph-lightning',
-  tragedia: 'ph-thin ph-mask-sad',
-  teatr: 'ph-thin ph-columns',
-  poezja: 'ph-thin ph-music-notes',
+  filozofia: 'scale',
+  mitologia: 'zap',
+  tragedia: 'drama',
+  teatr: 'landmark',
+  poezja: 'feather',
 }
 
 export const categories = [

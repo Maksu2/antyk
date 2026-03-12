@@ -27,7 +27,7 @@ export function renderCategories(container) {
     btn.dataset.catId = cat.id
 
     btn.innerHTML = `
-      <i class="category-btn__icon ${cat.icon}" aria-hidden="true" style="font-size:32px"></i>
+      <i data-lucide="${cat.icon}" class="category-icon" aria-hidden="true"></i>
       <span class="category-btn__name">${cat.label}</span>
       <span class="category-btn__count">${cat.subtopics.length} ${cat.subtopics.length === 1 ? 'temat' : 'tematy/ów'}</span>
       <span class="category-btn__indicator" aria-hidden="true"></span>
@@ -68,6 +68,9 @@ export function renderCategories(container) {
   activeId = firstCat.id
   renderSubtopics(panel, firstCat)
   panel.classList.add('is-open')
+
+  // Init Lucide icons after DOM is ready
+  if (window.lucide) window.lucide.createIcons()
 
   // Init reveal observer for category buttons
   initRevealObserver(bar.querySelectorAll('.category-btn'))
