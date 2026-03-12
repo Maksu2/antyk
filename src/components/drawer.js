@@ -3,6 +3,7 @@ import { GLOSSARY, TAG_GLOSSARY } from '../data/glossary.js'
 let backdrop = null
 let modal = null
 let modalInner = null
+let tooltipEl = null
 
 export function initDrawer() {
   // Backdrop
@@ -31,8 +32,14 @@ export function initDrawer() {
   modal.appendChild(closeBtn)
   modal.appendChild(modalInner)
 
+  // Tooltip overlay
+  tooltipEl = document.createElement('div')
+  tooltipEl.className = 'js-tooltip'
+  tooltipEl.setAttribute('aria-hidden', 'true')
+
   document.body.appendChild(backdrop)
   document.body.appendChild(modal)
+  document.body.appendChild(tooltipEl)
 
   // Close on Escape
   document.addEventListener('keydown', e => {
@@ -46,6 +53,7 @@ export function openDrawer(subtopic, categoryLabel) {
   if (!modal) return
 
   modalInner.innerHTML = buildModalHTML(subtopic, categoryLabel)
+  initTooltips(modalInner)
 
   backdrop.classList.add('is-open')
   modal.classList.add('is-open')
@@ -65,6 +73,7 @@ export function closeDrawer() {
   backdrop.classList.remove('is-open')
   modal.classList.remove('is-open')
   document.body.style.overflow = ''
+  tooltipEl.classList.remove('is-visible')
 }
 
 function buildModalHTML(sub, categoryLabel) {
@@ -92,6 +101,38 @@ function buildModalHTML(sub, categoryLabel) {
     ${quoteHTML}
     <div class="drawer__tags" aria-label="Tagi">${tagsHTML}</div>
   `
+}
+
+function initTooltips(container) {
+  container.querySelectorAll('[data-tooltip]').forEach(el => {
+    el.addEventListener('mouseenter', () => {
+      tooltipEl.textContent = el.dataset.tooltip
+      tooltipEl.classList.add('is-visible')
+      positionTooltip(el)
+    })
+    el.addEventListener('mouseleave', () => {
+      tooltipEl.classList.remove('is-visible')
+    })
+    el.addEventListener('mousemove', () => {
+      positionTooltip(el)
+    })
+  })
+}
+
+function positionTooltip(el) {
+  const rect = el.getBoundingClientRect()
+  const tipW = tooltipEl.offsetWidth
+  const gap = 10
+  let left = rect.left + rect.width / 2 - tipW / 2
+  let top = rect.top - tooltipEl.offsetHeight - gap
+
+  // Keep within viewport horizontally
+  left = Math.max(8, Math.min(left, window.innerWidth - tipW - 8))
+  // Flip below if not enough space above
+  if (top < 8) top = rect.bottom + gap
+
+  tooltipEl.style.left = `${left}px`
+  tooltipEl.style.top = `${top}px`
 }
 
 function annotateBody(escapedText) {
